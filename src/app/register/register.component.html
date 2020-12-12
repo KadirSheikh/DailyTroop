@@ -1,0 +1,190 @@
+<body class="register-page sidebar-collapse">
+  
+      <!-- <div class="page-header" style="background-image: url('assets/img/login-image.jpg');">
+    
+        <div class="container">
+            <div class="row">
+            <div class="page-header" style="background-image: url('assets/img/login-image.jpg');">
+                <div class="filter"></div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-4 ml-auto mr-auto">
+                                <div class="card card-register">
+                                    <h3 class="title mx-auto">Welcome</h3>
+                                    <div class="social-line text-center">
+                                        <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                                            <i class="fa fa-facebook-square"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
+                                        <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </div>
+                                    <form class="register-form">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" placeholder="Email">
+    
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" placeholder="Password">
+                                        <button class="btn btn-danger btn-block btn-round">Register</button>
+                                    </form>
+                                    <div class="forgot">
+                                        <a href="#" class="btn btn-link btn-danger">Forgot password?</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer register-footer text-center">
+                            <h6>© <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim</h6>
+                        </div>
+            </div>
+    
+            </div>
+        </div>
+    </div> -->
+      <div >
+        <div class="filter"></div>
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 ml-auto mr-auto">
+              <div id="register-div" class="card card-register" style="background-color: rgba(29, 209, 161,0.5);">
+                 
+                <h3 class="title mx-auto text-center font-weight-bold text-white" style="font-size: x-large;">Welcome</h3>
+                <!-- <div class="social-line text-center">
+                  <a href="#pablo" class="btn btn-neutral btn-facebook btn-just-icon">
+                    <i class="fa fa-facebook-square"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-neutral btn-google btn-just-icon">
+                    <i class="fa fa-google-plus"></i>
+                  </a>
+                  <a href="#pablo" class="btn btn-neutral btn-twitter btn-just-icon">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </div> -->            
+                <form id="user-register-form" method="post" class="register-form">
+                  <label class="font-weight-bold">Name</label>
+                  <input type="text" class="form-control" required name="name" placeholder="Full Name">
+                  <label class="font-weight-bold">Mobile</label>
+                  <input type="number" class="form-control" required name="mobile" placeholder="Mobile Number">
+                  <label class="font-weight-bold">Address</label>
+                  <textarea  class="form-control" name="address" required placeholder="Address"></textarea>
+                  <label class="font-weight-bold">Email</label>
+                  <input type="email" class="form-control" name="email" required placeholder="Email">
+                  <div id="email-error"></div>
+                  <label class="font-weight-bold">Password</label>
+                  <input type="password" class="form-control" required name="password" placeholder="Password">
+                  <button id="user-register-btn" type="submit" class="btn btn-success btn-block btn-round" name="register">Register</button><br>
+                </form>
+                <div class="forgot">
+                  <a routerLink="/login" class="btn btn-link btn-dark font-weight-bold">Already Registered? Login Here</a>
+                </div>
+                <!-- check -->
+                <!-- check end -->
+                    </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+    
+</body>    
+<!-- <script type="text/javascript">
+  $(document).ready(function(){
+    $("#user-register-form").submit(function(event){
+      event.preventDefault();
+      $("#user-register-btn").attr("disabled",true);
+      $("#user-register-btn").html('<i class="fa fa-circle-o-notch fa-spin"></i> Processing');
+      //console.log($("#user-register-form").serialize());
+      $.ajax({
+        url : 'api/register-page.php',
+        type : 'POST',
+        data :  $("#user-register-form").serialize(),
+
+        error : function(response){
+
+        },
+        success : function(response){
+          
+          $("#user-register-btn").html('Register');
+          var response = JSON.parse(response);
+          console.log(response);
+          if(response.hasOwnProperty('errorCode')){
+            $('#email-error').addClass("alert alert-danger").html(response.message);
+            $("#user-register-btn").attr("disabled",false);
+          }else{
+            $('#email-error').removeClass("alert alert-danger").html('');
+            $("#user-register-btn").attr("disabled",false);
+          }
+          if(response.hasOwnProperty('statusCode')){
+            if(response.message=='OTP sent'){
+                preventReload();
+                var hello ='hello';
+                $("#register-div").html(
+                        '<div class="text-center">'+
+                    '<div id="otp-form">'+
+                     '<h4>An OTP has been sent to your Email ! Please Check Your Mail...</h4>'+
+                      '<br>'+
+                      '<br>'+
+                      '<h5>'+response.email+'&nbsp;&nbsp;<i class="nc-icon nc-settings"></i></h5>'+ 
+                      '<input id="otp_input" type="text" class="form-control" required name="otp_input" placeholder="Enter OTP Here..">'+
+                      '<button id="otp-submit" class="btn btn-info">Submit</button>'+
+                      
+                    '</div>'+
+                  '</div>'+
+                  '<div id="otp-message"></div>'
+                  );
+            }
+          }
+          
+        }
+      });
+    });
+    $(document).on("click", "#otp-submit" , function() {
+        $("#otp-submit").attr("disabled",true);
+        $("#otp-submit").html('<i class="fa fa-circle-o-notch fa-spin"></i> Processing');
+        $.ajax({
+          url : 'api/otp-validate.php',
+          type : 'POST',
+          data : {
+            'action' : 'otp-validate',
+            'otp' : $("#otp_input").val()
+          },
+          error : function(response){
+              console.log('error');
+          },
+          success : function(response){
+            var response = JSON.parse(response);
+            console.log(response);
+            $("#otp-submit").attr("disabled",false);
+            if(response.hasOwnProperty('statusCode') && response.statusCode==200){
+                allowReload();
+                $("#otp-submit").attr("disabled",true);
+                $("#otp-submit").html('Submit'); 
+                $("#otp-message").removeClass().addClass("alert alert-success").html('<i class="nc-icon nc-check-2">&nbsp;</i>OTP Verified');
+                $("#register-div").append('<button id="otp-verified-login" class="btn btn-info btn-round">Login</button>');
+            }
+            if(response.hasOwnProperty('errorCode')){
+                $("#otp-submit").html('Submit'); 
+                $("#otp-message").removeClass().addClass("alert alert-danger").html(response.message);
+            }
+          }
+        });
+    });
+    $(document).on("click", "#otp-verified-login" , function(){
+        window.location.href='login.php';
+    });
+    function preventReload(){
+      window.onbeforeunload = function() {
+        return "Dude, are you sure you want to leave? Think of the kittens!";
+      }
+    }
+    function allowReload(){
+      window.onbeforeunload = function () {
+  // blank function do nothing
+      }
+    }
+  
+  });
+</script> -->

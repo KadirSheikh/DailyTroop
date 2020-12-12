@@ -1,0 +1,224 @@
+
+<body class="register-page sidebar-collapse">
+
+ 
+  <div >
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 ml-auto mr-auto">
+       
+          <div class="card card-register" style="background-color: rgba(29, 209, 161,1); ">
+            <h2 class="title mx-auto" style="font-weight: bold;color: white;font-size: x-large;">
+              Grocery
+            </h2>
+           
+              <div class="container">
+                <div class="row">
+                <div class="col-sm-12 imgUp">
+                  <div class="imagePreview"></div>
+                    <label  class="btn btn-primary">Upload<input name="list" id="list" type="file" class="uploadFile img" value="Upload Photo" style="margin-top: 0px;width: 0px;height: 0px;overflow: hidden;">
+                    </label>
+                      </div><!-- col-2 -->
+                     </div><!-- row -->
+                    </div><!-- container -->
+                    <div  >
+                      <div class="form-inline abc " >
+                        <div class="form-check-radio text-center form-inline" style="margin-left: 1%;"  >
+                      <label class="form-check-label text-center">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="frequency1" value="daily" > 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">Daily</p>
+                    </div>
+                    <div class="form-check-radio form-inline" style="margin-left: 1%">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="frequency2" value="weekly"> 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">Weekly</p>
+                    </div>
+                    <div class="form-check-radio form-inline" style="margin-left: 1%" >
+                      <label class="form-check-label">
+                        <input class="form-check-input"  type="radio" name="exampleRadios" id="frequency3" value="monthly"> 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">Monthly</p>
+                    </div>
+                      </div>
+                    </div>
+                    <p style="font-weight: bold;">Date</p>
+                    <input id="date" type="date" min="22/05/2020" class="form-control" placeholder="Date" onchange="validateDate()"><br/>
+                    <p style="font-weight: bold;">Time</p>
+                    <input id="time" type="time" class="form-control" placeholder="Date" onchange="validateTime()"><br>
+
+
+                    <!-- Repeat My Guy Code -->
+         
+
+                    <p  style="font-weight: bold;">Repeat My Guy</p>
+
+                    <select id="emp_id" class="form-control">
+                      <option value="0">Select..</option>
+                      <option value='0'>No Employee Found</option>";
+                     
+                    </select>
+                    <!-- RMY End -->
+                 
+                <button id="proceed" class="btn btn-danger btn-block btn-round">Proceed</button>
+                          
+          </div>
+          <div id="carouselExampleIndicators" class="col-md-12 carousel slide mb-5" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class=" h-10"  src="assets/marketplace1.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img class=" h-10"  src="assets/header1.jpg" alt="Second slide">
+                </div>
+                
+              </div>
+            </div>
+      </div>
+    </div>
+    
+
+    <!-- <script type="text/javascript">
+      $(".imgAdd").click(function(){
+      $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+    });
+    $(document).on("click", "i.del" , function() {
+      $(this).parent().remove();
+    });
+    $(function() {
+        $(document).on("change",".uploadFile", function()
+        {
+            var uploadFile = $(this);
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+     
+            if (/^image/.test( files[0].type)){ // only image file
+                var reader = new FileReader(); // instance of the FileReader
+                reader.readAsDataURL(files[0]); // read the local file
+     
+                reader.onloadend = function(){ // set image data as background of div
+                    //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+    uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+                }
+            }
+          
+        });
+    });
+    
+    
+      /*Function to Proceed Further*/
+      $('#proceed').on('click', () => {
+        
+        let type      = "<?php echo base64_decode($_GET['type']) ?>";
+        let list      = $('#list')[0].files[0];
+        let daily     = weekly = monthly = '';
+        let frequency = '';
+        var vall      = $("input[name='exampleRadios']:checked").val();
+        if(vall){
+          frequency   = vall;
+        }else{
+          frequency   = 'N.A';
+        }
+        let date      = $('#date').val();
+        let time      = $('#time').val();
+        let emp_id    = $('#emp_id').val();
+    
+          
+        if(type == '' || list == '' || frequency == '' || date == '' || time == ''){
+          swal("All Fields Are Required!", " ","warning");
+        }else{
+          var form_data = new FormData();
+          form_data.append('type', type);
+          form_data.append('list', list);
+          form_data.append('frequency', frequency);
+          form_data.append('date', date);
+          form_data.append('time', time);
+          form_data.append('emp_id', emp_id);
+    
+          console.log(type,list,frequency,date,time,emp_id);
+           $.ajax({
+              url:'api/grocery.php',
+              type:'POST',
+              data: form_data,
+              cache: false,
+              contentType: false,
+              processData: false,
+              beforeSend: function(){
+                  $("#proceed").attr("disabled",true);
+                  $("#proceed").html('<i class="fa fa-circle-o-notch fa-spin"></i> Processing');
+                },
+                success:  function (data) {
+                  var response = JSON.parse(data);
+                  if(response.hasOwnProperty('errorCode')){
+                    swal(response.message, " ", "error");
+                    $("#proceed").attr("disabled",false);
+                    $("#proceed").html('Proceed');
+                  }
+                  if(response.hasOwnProperty('statusCode')){
+                    swal("Order Confirmation!", "Please Click on Next to Add Delivery Address", "success",{
+                      button: "Next",
+                    })
+                    .then((value) => {
+                      window.location = 'checkout.php';
+                    });
+                  }
+                }
+            });
+    
+        }    
+    
+        
+      });
+    
+      /*Validate Date Start*/
+        validateDate = () => {
+              const dDate = document.getElementById('date').value;
+              const cDate = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+              
+              console.log(dDate,cDate)
+              if(dDate < cDate){
+                  swal("Please Select Valid date!", ` `, "error");
+              } 
+        }
+      /*validate Date End*/
+    
+      /*Time Validation*/
+      validateTime = () => {
+            const dTime = document.getElementById('time').value;
+            // const d = new Date();
+            // const time = d.getHours() + ":" + d.getMinutes();
+            console.log(dTime)
+    
+            if(String(dTime) < '10:00' || String(dTime) > '19:00'){
+                /*console.log('Please Select time Between 10:00 AM to 07:00 PM')*/
+                // document.getElementById('msg').innerHTML = `Please Select time Between 10:00 AM to 07:00 PM`;
+                  swal("Error!", `Please Select time Between 10:00 AM to 07:00 PM`, "error");
+    
+            }
+            
+        } 
+    
+    
+      /*Disable Button Till Whole From Is Filled*/
+      let inputs = document.querySelectorAll('input'),
+        knapp = document.querySelector('#proceed')
+        knapp.disabled = true
+        
+      for (i = 0; i < inputs.length; i++) {
+        inputs[i].addEventListener('input',() => {
+          let values = []
+          inputs.forEach(v => values.push(v.value))
+          knapp.disabled = values.includes('')
+        })
+      }
+    </script> -->

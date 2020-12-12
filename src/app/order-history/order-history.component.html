@@ -1,0 +1,126 @@
+
+
+<body class="profile-page sidebar-collapse">
+
+  <div class="page-header page-header-xs " data-parallax="true" style="background-image: url('assets/header1.jpg');">
+    <div class="filter"></div>
+  </div>
+  <div class="section profile-content">
+    <div class="container">
+      <div class="owner">
+        <div class="avatar">
+          <img src="assets/icons/logoTwo.png" alt="Circle Image" class="img-circle shadow-lg img-no-padding img-responsive">
+        </div>
+        
+        <div class="filter"></div>
+      <div class="container " style="width: 100%">
+        <!-- <div class="form-group form-inline">
+          <label class="form-check-label font-weight-bold">Sort Orders By : </label> &nbsp;&nbsp;
+          <select id="sort" onchange="sortBy()" class="form-control justify-content-center" style="width: 400px">
+              <option>Select</option>
+              <option value="Grocery">Groceries</option>
+              <option value="Medicines">Medicines</option>
+              <option value="Electric Service">Electric Service</option>
+              <option value="Air Conditioner">Air Conditioner</option>
+              <option value="Plumbing">Plumbing</option>
+          </select>
+        </div> -->
+        <h4 style="font-size: x-large;font-weight: bold;">Select Any Service Category to Get Order History </h4><br>
+        <small class="text-danger font-weight-bold" style="font-weight: bold;">Note : For Automotive Service Order History, Please visit Oily HandShakes portal thorugh Dashobard </small><br><br>
+        <button id="Grocery" class="btn btn-primary mr-2">Grocery</button>
+        <button id="Medicines" class="btn btn-danger mr-2">Medicines</button>
+        <button id="Electric Service" class="btn btn-warning mr-2">Electric Service</button>
+        <button id="Air Conditioner" class="btn btn-dark mr-2">Air Conditioner</button>
+        <button id="Plumbing" class="btn btn-success mr-2">Plumbing</button>
+        <button id="Package Shipment" class="btn btn-info mr-2">Package Shipment</button>
+        <!-- get All Orders on Page Load -->
+       <div id="orders"></div>
+        
+      </div>
+
+      <br>
+            
+      <!-- Tab panes -->
+      
+    </div>
+
+  </div>
+  </div>
+
+  
+</body>
+
+
+
+
+<!-- <script type="text/javascript">
+   /*get All Orders on Page Load */
+  // /*$(document).ready(function() {
+  //     $.ajax({
+  //         url:'getOrders.php',
+        
+  //         success:  function (data) {
+  //             $('#orders').html(data);
+  //           }
+  //       })
+  // });
+
+  // /*Sort Orders*/
+
+  // sortBy = () => {
+
+  //   let param = $('#sort').val();
+  //   let action = "sortOrders";
+
+  //   let formData =  {param : "param", action : "action"};
+
+  //   $.ajax({
+  //         url:"api/sortOrders.php",
+
+  //         method:"POST",
+
+  //         data:{action:action,param:param},
+  //         beforeSend: function(){
+  //               $('#orders').html("LOADING....!");
+  //           },
+  //         success:  function (data) {
+  //              $('#orders').html(data);
+  //         }
+  //       });
+  // }*/
+
+  $("button").click(function() {
+    // alert(this.id); 
+
+    if(this.id != 'Package Shipment'){
+      $.ajax({
+            url:"api/sortOrders.php",
+
+            method:"POST",
+
+            data:{param : this.id},
+            beforeSend: function(){
+                  $('#orders').html("LOADING....!");
+              },
+            success:  function (data) {
+                 $('#orders').html(data);
+            }
+          });
+    }else{
+      $.ajax({
+            url:"api/getPackageOrders.php",
+
+            method:"POST",
+
+            data:{param : this.id},
+            beforeSend: function(){
+                  $('#orders').html("LOADING....!");
+              },
+            success:  function (data) {
+                 $('#orders').html(data);
+            }
+          });
+    }
+
+  });
+</script> -->

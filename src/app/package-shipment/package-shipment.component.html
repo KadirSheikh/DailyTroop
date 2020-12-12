@@ -1,0 +1,204 @@
+
+<body class="register-page sidebar-collapse">
+
+ 
+  <div >
+    <div class="filter"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 ml-auto mr-auto">
+         
+          <div class="card card-register" style="background-color: rgba(29, 209, 161,1); ">
+    
+            <h2 class="title mx-auto" style="font-weight: bold;color: white;font-size: x-large;">
+              Package Shipment
+            </h2>
+            
+              <div class="container">
+                <div class="row">
+                <div class="col-sm-12 imgUp">
+                  <div class="imagePreview"></div>
+                    <label  class="btn btn-primary">Upload<input type="file" id="packagePic" class="uploadFile img" value="Upload Photo" style="margin-top: 0px;width: 0px;height: 0px;overflow: hidden;">
+                    </label>
+                      </div><!-- col-2 -->
+                     </div><!-- row -->
+                    </div><!-- container -->
+                    <div  >
+                      <div class="form-inline abc " >
+                        <div class="form-check-radio form-inline" style="margin-left: 1%">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="destination" id="exampleRadios1" value="intercity"> 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">Intercity</p>
+                    </div>
+                        <div class="form-check-radio text-center form-inline" style="margin-left: 1%;"  >
+                      <label class="form-check-label text-center">
+                        <input class="form-check-input" type="radio" name="destination" id="exampleRadios1" value="domestic"> 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">Domestic</p>
+                    </div>
+                    <div class="form-check-radio form-inline" style="margin-left: 1%">
+                      <label class="form-check-label">
+                        <input class="form-check-input" type="radio" name="destination" id="exampleRadios1" value="international"> 
+                        <span class="form-check-sign"></span>
+                      </label>
+                       <p  style="font-weight: bold;">International</p>
+                    </div>
+                    
+                      </div>
+                    </div>
+                    <p style="font-weight: bold;">Pick Up Address</p>
+                    <textarea placeholder=" Format : Address, City, State, County" id="pickupAddress" class="form-control"></textarea>
+                    <label></label>
+                     <p style="font-weight: bold;">Zip/Postal Code</p>
+                     <input type="text" id="pickZip" name="pickZip" placeholder="Pickup Address Zip/Postal Code" class="form-control">
+                    <label></label>
+                    <p style="font-weight: bold;">Delivery Address</p>
+                    <textarea placeholder="Format : Address, City, State, County" id="deliveryAddress" class="form-control"></textarea>
+                    <label></label>
+                     <p style="font-weight: bold;">Zip/Postal Code</p>
+                     <input type="text" id="deliveryZip" name="deliveryZip" placeholder="Delivery Address Zip/Postal Code" class="form-control">
+                    <label></label>
+                    <p style="font-weight: bold;">Pick Up Date</p>
+                    <input type="date" id="date" class="form-control" placeholder="Date"><br/>
+                    <p style="font-weight: bold;">Pick Up Time</p>
+                    <input type="time" id="time" class="form-control" placeholder="Date">
+
+
+              <button id="proceed" class="btn btn-danger btn-block btn-round">Proceed</button>
+            
+              
+          </div>
+          <div id="carouselExampleIndicators" class="col-md-12 carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class=" h-10"  src="../../assets/marketplace1.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                  <img class=" h-10"  src="../../assets/header1.jpg" alt="Second slide">
+                </div>
+                
+              </div>
+           
+            </div>
+       
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+ 
+</body>
+
+<!-- <script type="text/javascript">
+  $(".imgAdd").click(function(){
+  $(this).closest(".row").find('.imgAdd').before('<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>');
+});
+$(document).on("click", "i.del" , function() {
+  $(this).parent().remove();
+});
+$(function() {
+    $(document).on("change",".uploadFile", function()
+    {
+        var uploadFile = $(this);
+        var files = !!this.files ? this.files : [];
+        if (!files.length || !window.FileReader) return; // no file selected, or no FileReader support
+ 
+        if (/^image/.test( files[0].type)){ // only image file
+            var reader = new FileReader(); // instance of the FileReader
+            reader.readAsDataURL(files[0]); // read the local file
+ 
+            reader.onloadend = function(){ // set image data as background of div
+                //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
+uploadFile.closest(".imgUp").find('.imagePreview').css("background-image", "url("+this.result+")");
+            }
+        }
+      
+    });
+});
+
+let inputs = document.querySelectorAll('input'),
+    knapp = document.querySelector('#proceed')
+    knapp.disabled = true
+    
+for (i = 0; i < inputs.length; i++) {
+  inputs[i].addEventListener('input',() => {
+    let values = []
+    inputs.forEach(v => values.push(v.value))
+    knapp.disabled = values.includes('')
+  })
+}
+
+/*Function to Proceed Further*/
+  $('#proceed').on('click', () => {
+    
+    
+    let packagePic          = $('#packagePic')[0].files[0];
+    let destination   = '';
+    var vall          = $("input[name='destination']:checked").val();
+    if(vall){
+      destination     = vall;
+    }
+    let pickupAddress   = $('#pickupAddress').val();
+    let pickZip         = $('#pickZip').val();
+    let deliveryAddress = $('#deliveryAddress').val();
+    let deliveryZip     = $('#deliveryZip').val();
+    let date            = $('#date').val();
+    let time            = $('#time').val();
+      
+    if(packagePic == '' || destination == '' || pickupAddress == '' || deliveryAddress == '' || date == '' || time == '' ){
+      swal("All Fields Are Required!", " ","warning");
+    }else{
+      var form_data = new FormData();
+      form_data.append('packagePic', packagePic);
+      form_data.append('destination', destination);
+      form_data.append('pickupAddress', pickupAddress);
+      form_data.append('deliveryAddress', deliveryAddress);
+      form_data.append('date', date);
+      form_data.append('time', time);
+      form_data.append('pickZip', pickZip);
+      form_data.append('deliveryZip', deliveryZip);
+
+      console.log(packagePic,destination,pickupAddress,deliveryAddress,date,time);
+       $.ajax({
+          url:'api/package_shipment.php',
+          type:'POST',
+          data: form_data,
+          cache: false,
+          contentType: false,
+          processData: false,
+          beforeSend: function(){
+              $("#proceed").attr("disabled",true);
+              $("#proceed").html('<i class="fa fa-circle-o-notch fa-spin"></i> Processing');
+            },
+            success:  function (data) {
+              var response = JSON.parse(data);
+              if(response.hasOwnProperty('errorCode')){
+                swal(response.message, " ", "error");
+                $("#proceed").attr("disabled",false);
+                $("#proceed").html('Proceed');
+              }
+              if(response.hasOwnProperty('statusCode')){
+                swal("Order Confirmation!", " ", "success",{
+                  button: "Ok",
+                })
+                .then((value) => {
+                  window.location = 'dashboard.php';
+                });
+              }
+            }
+        });
+
+    }    
+
+    
+  });
+</script> -->

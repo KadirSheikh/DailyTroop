@@ -1,0 +1,184 @@
+.col{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+  }
+  .h-10{
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+    }
+    .carousel,
+    .slide{
+       width: 200px;
+       height: 200px;     
+       
+    }  
+    .icon{
+     background-size: cover;
+
+    }
+
+    .ititile{
+      font-size: 8px;
+      color: black;
+      font-weight: bold;
+      white-space: nowrap;
+      margin-top: 4px
+    }
+    .icon{
+    width: 100px !important;
+    height: 120px !important;
+  }
+  @media (min-width: 768px){
+    .icon{
+      width: 400px !important; 
+      height: auto;
+    }
+  }
+  @media (min-width: 768px){
+    .ititile{
+      font-size: 10px;
+      color: black;
+      font-weight: bold;
+      white-space: nowrap;
+      margin-top: 4px
+    }
+  }
+
+  /* Address Manager */
+  .card{
+    margin-bottom: 10px !important;
+  }
+  .upper-address-space{
+    
+  }
+  .radio-div {
+    display: block;
+    position: absolute;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .radio-div input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .radio-div:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radio-div input:checked ~ .checkmark {
+    background-color: #007ee2;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radio-div input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radio-div .checkmark:after {
+    top: 9px;
+    left: 9px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+  }
+    
+    .billing-heading .shipName{
+      float: left;
+    }
+    .billing-heading .shipPhone{
+      float: right;
+    }
+    .address-box{
+      margin-bottom: 0.5rem
+    }
+    .address-box .d-flex{
+       
+    
+    display: inline-flex !important;
+      
+    }
+    hr {
+     margin-top: 0rem; 
+     margin-bottom: 0.5rem; 
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+    .address-box .d-flex span{
+      width: 100%
+    }
+    .address-box .select-btn{
+      
+    }
+    .cart-detail.cart-total {
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.address-box {
+    margin-bottom: 0.5rem;
+}
+.cart-detail {
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+.cart-total {
+    width: 100%;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 20px;
+}
+.mb-4{
+  margin:0px;
+}
+.p-3 {
+    padding: 1rem !important;
+}
+
+  @media (max-width: 480px){
+    .billing-heading .shipPhone{
+      float: left;
+    }
+    .billing-heading .shipName{
+      float: left;
+      margin-bottom: 1rem;
+    }
+    
+  }

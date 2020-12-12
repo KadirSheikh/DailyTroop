@@ -1,0 +1,101 @@
+
+
+
+
+<body class="register-page sidebar-collapse">
+<div class="filter">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 ml-auto mr-auto">
+        <section class="text-gray-700 body-font overflow-hidden">
+            <div class="container px-2 py-24 mx-auto">
+                <div class="flex justify-content-center flex-wrap -m-4">
+                
+                      
+                <div class="p-2 xl:w-1/2 md:w-3 w-full">
+                    <div class="h-full p-6 rounded-lg border-2  border-green-200 flex flex-col relative overflow-hidden">
+                    <!-- <span class="bg-green-300 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">POPULAR</span> -->
+                    <h2 style="font-weight: bold;" class="text-sm tracking-widest title-font mb-1 font-medium mb-4">Order Summary</h2>
+                    <!-- <h1 class="text-5xl text-gray-900 leading-none flex items-center pb-4 mb-4 border-b border-gray-200">
+                        <span>$38</span>
+                        <span class="text-lg ml-1 font-normal text-gray-500">/year</span>
+                    </h1> -->
+                    <hr class="mb-4">
+
+          
+                    <p style="font-weight: bold;" class="flex items-center text-gray-600 mb-2">
+                        <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-green-500 text-white rounded-full flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        </span>Order Id : 
+                    </p>
+                    <p style="font-weight: bold;" class="flex items-center text-gray-600 mb-2">
+                        <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-green-500 text-white rounded-full flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        </span>Subscription Type : 
+                    </p>
+                    <p style="font-weight: bold;" class="flex items-center text-gray-600 mb-2">
+                        <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-green-500 text-white rounded-full flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        </span>Amount : <i class="fa fa-inr" aria-hidden="true"></i> 
+                    </p>
+                    <p style="font-weight: bold;" class="flex items-center text-gray-600 mb-2">
+                        <span class="w-4 h-4 mr-2 inline-flex items-center justify-center bg-green-500 text-white rounded-full flex-shrink-0">
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" class="w-3 h-3" viewBox="0 0 24 24">
+                            <path d="M20 6L9 17l-5-5"></path>
+                        </svg>
+                        </span>Expected Expiry : 
+                    </p>
+
+                   	
+                    <form method="post" action="PaytmKit/pgRedirect.php">
+
+                    	<!-- Order Id -->
+                    	<input hidden style="border: 0px" id="ORDER_ID" readonly="" tabindex="1" maxlength="20" size="20"
+						name="ORDER_ID" autocomplete="off"
+						value="">
+						<!-- Customer Id -->
+						<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off" value="">
+						<!-- Industry Type -->
+						<input hidden id="INDUSTRY_TYPE_ID" tabindex="4" maxlength="12" size="12" name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail">
+						<!-- Channel Id -->
+						<input hidden id="CHANNEL_ID" tabindex="4" maxlength="12"
+						size="12" name="CHANNEL_ID" autocomplete="off" value="WEB">
+						<!-- Amount -->
+						<input hidden style="border: 0px" readonly="" title="TXN_AMOUNT" tabindex="10"
+						type="text" name="TXN_AMOUNT"
+						value="">
+
+
+                    	<button class="flex btn btn-success  items-center mt-auto text-white bg-green-500 border-0 py-2 px-4 w-full focus:outline-none hover: rounded">Pay Now Using Paytm
+                        <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-auto" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7"></path>
+                        </svg>
+                   		</button>
+                    </form>
+
+
+                    
+                    </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </section>
+          
+         
+        </div>
+
+      </div>
+    </div>
+    
+  </div>
+
+  
+  </body>
+

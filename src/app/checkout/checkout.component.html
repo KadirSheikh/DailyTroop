@@ -1,0 +1,170 @@
+<body class="register-page sidebar-collapse">
+
+    <div class="filter">
+    <div class="container">
+    <div class="row">
+    <section class="ftco-section" style="padding: 2em 0;">
+      <form id="ship-detail-form" method="POST" action="#" class="container">
+    <div class="row justify-content-center" style="padding-left: 10px;padding-right: 10px;">    
+        <h4 class="font-weight-bold">Order Summary</h4>
+        <p class="font-weight-bold text-danger">Your Order will be reviewed within 24 hrs
+        and we will notifiy the Payment details once reviewed through email. </p>
+        <div class="col-xl-7 ftco-animate"><h5 class="mb-0 bread" style="color: black;padding-top: 25px;"><b>Your Address:</b></h5><br>
+          <div name="address-radio" class="card address-box cart-detail cart-total p-3 p-md-4">
+                <div class="upper-address-space">
+                  <label class="radio-div">
+                        <input type="radio" class="address-radio" name="address-radio" value="">
+                        <span class="checkmark"></span>
+                  </label>
+                  <h4 class="billing-heading mb-4"><b class="shipName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b><b class="shipPhone"></b></h4>
+                </div>
+                <div class="lower-address-space">
+                  <p class="d-flex">
+                      <span></span>
+                  </p><br>
+                  <p class="d-flex">
+                      <span></span>
+                  </p>
+                  <p class="d-flex select-btn">
+                      <input type="text" hidden value="">
+                  </p>
+                </div>         
+            </div>
+        </div>
+    <br>
+        <div name="address-radio" class="card address-box cart-detail cart-total p-3 p-md-4">
+              <label class="radio-div">
+                <input id="ship-to-different-address" type="radio" class="address-radio" name="address-radio" value="ship-to-different-address">
+                <span class="checkmark"></span>
+              </label>
+                  <h4 class="billing-heading mb-4 text-primary"><b class="shipName" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ship to different address</b></h4>
+        </div>
+       
+          </div> 
+        
+         <p class="text-center"><button type="submit" id="place-order" class="btn btn-success py-3 col-sm-6 px-4">Add Delivery Address</button></p>
+
+      </form> 
+      <p class="text-center"><button id="cancelOrder" value="" class="text-center btn btn-danger  py-3 col-sm-6 px-4">Cancel Order</button></p>
+    </section>
+
+      </div>
+    </div>
+  </div>
+ </body>
+  <!-- <script>
+
+    let buttonId = '';
+$(document).ready(function(){ 
+  $(".address-radio").click(function(event){
+
+    if($(this).attr('id') == 'ship-to-different-address'){
+      $(".address-div").html('<div class="billing-form"><h3 class="mb-4 billing-heading">Billing Details</h3><div class="row align-items-end"><div class="col-md-6"><div class="form-group"><label for="firstname">Firt Name</label><input required type="text" name="firstname" class="form-control" placeholder="First Name"></div></div><div class="col-md-6"><div class="form-group"><label for="lastname">Last Name</label><input required type="text" name="lastname" class="form-control" placeholder="Last Name"></div></div><div class="w-100"></div><div class="col-md-12"><div class="form-group"><label for="country">State</label><div class="select-wrap"><input type="text" name="state" class="form-control" required placeholder="Enter State"></div></div></div><div class="w-100"></div><div class="col-md-12"><div class="form-group"><label for="streetaddress">Address</label><textarea class="form-control" name="address" required placeholder="Enter Address"></textarea></div></div><div class="w-100"></div><div class="col-md-6"><div class="form-group"><label for="towncity">Town / City</label><input required type="text" name="city" class="form-control" placeholder="City"></div></div><div class="col-md-6"><div class="form-group"><label for="postcodezip">Postcode / ZIP *</label><input required name="zipcode" type="text" class="form-control" placeholder="Zip Code"></div></div><div class="w-100"></div><div class="col-md-6"><div class="form-group"><label for="phone">Phone</label><input required name="phone" type="text" class="form-control" placeholder="XXXXXXXXXX"></div></div><div class="col-md-6"><div class="form-group"><label for="emailaddress">Email Address</label><input required type="text" name="email" class="form-control" placeholder="Ex : xyz@gmail.com"></div></div><div class="w-100"></div></div>');
+
+       
+        
+    }else{
+      $(".address-div").html('');
+      
+      
+    }
+  });
+
+  $("#ship-detail-form").submit(function(event){
+    
+    console.log($("#ship-detail-form").serialize());
+    event.preventDefault();
+
+    /*Idenifying Address*/
+    let form_data = $("#ship-detail-form").serializeArray();
+    if(parseInt(form_data[0].value) === 1){
+      console.log('Exisitng Address');
+    }else{
+      console.log('Adding New Address');
+    }
+    /*end*/
+
+    $.ajax({
+      url:'api/add_address.php',
+      type:'POST',
+      data:$("#ship-detail-form").serialize(),
+      beforeSend: function(){
+        // $("#place-order").attr("disabled",true);
+        // $("#place-order").html('<i class="fa fa-circle-o-notch fa-spin"></i> Processing');
+      },
+      error: function(response){
+        //console.log(response);
+      },
+      success: function(data){
+        var response = JSON.parse(data);
+        if(response.hasOwnProperty('errorCode')){
+                swal(response.message, " ", "error");
+                $("#place-order").attr("disabled",false);
+                $("#place-order").html('Add Delivery Address');
+        }
+        if(response.hasOwnProperty('statusCode')){
+                swal("Success!","", "success",{
+                  button: "Next",
+                })
+                .then((value) => {
+                  window.location = 'dashboard.php';
+                });
+              }
+      }
+    });
+
+  });
+});
+
+/*Cancel Order*/
+$('#cancelOrder').on('click', () => {
+    let order_id = $('#cancelOrder').val();
+    var form_data = new FormData();
+    form_data.append('order_id', order_id);
+    swal({
+    title: "Are you sure want to cancel order?",
+    text: "Order ID : " + order_id,
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+         $.ajax({
+          url:'api/cancelOrder.php',
+          type:'POST',
+          data: form_data,
+          cache: false,
+          contentType: false,
+          processData: false,
+
+          success:  function (data) {
+              var response = JSON.parse(data);
+              if(response.hasOwnProperty('errorCode')){
+                  swal(response.message, {
+                  icon: "error",
+                });
+              }
+              if(response.hasOwnProperty('statusCode')){
+                  swal("Succesfully Canceled !", {
+                  icon: "success",
+                });
+                  window.location = 'dashboard.php';
+              }
+
+            }
+
+        })
+      
+    } 
+});
+
+});
+
+
+</script> -->
+
+
+
+
+
